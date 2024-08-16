@@ -1,0 +1,22 @@
+{
+  "name": "com.strangemangames.scenehelper",
+  "version": "1.0.0",
+  "keywords": [
+    "scene",
+    "strangeman",
+    "inheritence-implementation",
+    "design-pattern",
+    "service",
+    "event-driven",
+    "scriptable-object"
+  ],
+  "category": "scene loading & transition management",
+  "displayName": "Strangeman Scene",
+  "description": "Strangeman.SceneHelper: this package provides solutions for scene loading and transition management.",
+  "documentationUrl": "https://github.com/miclede/Strangeman.SceneHelper/wiki",
+  "author": {
+    "name": "Michael L'Estrange",
+    "email": "michael@strangeman.games",
+    "url": "https://github.com/miclede"
+  }
+}
