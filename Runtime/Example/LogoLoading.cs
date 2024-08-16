@@ -27,9 +27,11 @@ namespace Strangeman.SceneHelper.Example
 
         protected override IEnumerator AllowLoadCompletion()
         {
+            _anyButtonText.enabled = true;
+
             yield return new WaitUntil(() => Keyboard.current.anyKey.wasPressedThisFrame);
 
-            base.AllowLoadCompletion();
+            StartCoroutine(base.AllowLoadCompletion());
         }
     }
 }

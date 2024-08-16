@@ -11,33 +11,42 @@ namespace Strangeman.SceneHelper.Core
 
     public abstract class SceneTransition : MonoBehaviour, IInitializeWith<SceneEventController>
     {
-        private Action AllowLoad;
-        private Action TransitionEnded;
-
+        //Going from a Scene, into another Scene: Load, From, Into
         protected Action<LoadTransitionType> LoadTransition;
-
         protected Func<bool> FromSceneCondition;
         protected Func<bool> IntoSceneCondition;
+
+        #region Functionality
+        Action AllowLoad;
+        Action TransitionEnded;
 
         public void InitializeWith(SceneEventController eventController)
         {
             ServiceLocator.Global.GetMonoService(out SceneLoader sceneLoader);
             transform.SetParent(sceneLoader.transform);
 
-            SceneManager.sceneLoaded += EndTransition;
+            SceneManager.sceneLoaded += OnBeginIntoTransition;
 
             AllowLoad += eventController.OnAllowLoad;
             TransitionEnded += FinishedTransitionCycle;
             TransitionEnded += eventController.OnTransitionEnded;
 
             eventController.OnTransitionStart();
-            LoadTransition += OnBeginTransition;
+
+            LoadTransition += OnBeginFromTransition;
+            LoadTransition?.Invoke(LoadTransitionType.FromScene);
         }
 
-        private void OnBeginTransition(LoadTransitionType transitionType)
+        private void OnBeginFromTransition(LoadTransitionType transitionType)
         {
             if (transitionType is LoadTransitionType.FromScene)
                 StartCoroutine(TransitionActivity(FromSceneCondition, AllowLoad));
+        }
+
+        private void OnBeginIntoTransition(Scene sceneLoaded, LoadSceneMode sceneLoadMode)
+        {
+            LoadTransition?.Invoke(LoadTransitionType.IntoScene);
+            StartCoroutine(TransitionActivity(IntoSceneCondition, TransitionEnded));
         }
 
         private IEnumerator TransitionActivity(Func<bool> activityCondition, Action callback)
@@ -46,24 +55,17 @@ namespace Strangeman.SceneHelper.Core
             callback?.Invoke();
         }
 
-        private void EndTransition(Scene sceneLoaded, LoadSceneMode sceneLoadMode)
-        {
-            StartCoroutine(TransitionActivity(IntoSceneCondition, TransitionEnded));
-        }
-
-        private void FinishedTransitionCycle()
-        {
-            Destroy(gameObject);
-        }
+        private void FinishedTransitionCycle() => Destroy(gameObject);
 
         private void OnDisable()
         {
-            SceneManager.sceneLoaded -= EndTransition;
+            SceneManager.sceneLoaded -= OnBeginIntoTransition;
             AllowLoad = null;
             TransitionEnded = null;
             LoadTransition = null;
             FromSceneCondition = null;
             IntoSceneCondition = null;
         }
+        #endregion
     }
 }

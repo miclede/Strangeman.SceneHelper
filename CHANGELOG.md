@@ -1,3 +1,8 @@
+## [1.0.1] - 2024-08-16
+### Bug Fix: SceneTransition
+- Fixed a bug that was not allowing transitions to finish when entering the loaded scene
+- Added some documentation and expaneded on transition example
+
 ## [1.0.0] - 2024-08-16
 ### First Release
 - Contains core scene loading, configuration, and transition framework

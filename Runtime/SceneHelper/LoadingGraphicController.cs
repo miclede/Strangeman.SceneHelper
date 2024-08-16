@@ -35,6 +35,7 @@ namespace Strangeman.SceneHelper.Core
         protected virtual IEnumerator AllowLoadCompletion()
         {
             OnCompleteLoad?.Invoke();
+
             yield break;
         }
 
