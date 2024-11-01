@@ -1,5 +1,5 @@
 # Strangeman.SceneHelper
-[![GitHub package.json version]][ReleasesLink] [![ChangelogBadge]](CHANGELOG.md) [![InstallationBadge]](#installation) [![WikiBadge]][WikiLink]
+[![GitHub package.json version]](#installation)[![ChangelogBadge]](CHANGELOG.md) [![InstallationBadge]](#installation) [![WikiBadge]][WikiLink]
 
 This package provides a data-first Unity Scene loading & transition management solution for Unity.
 
@@ -16,7 +16,7 @@ Feel free to create your own projects using this as a resource. While it is not 
 [![UtilsBadge]][UtilsLink]
 
 ## Installation
-Option 1: Add to Unity from Package Manager:
+Add to Unity from Package Manager:
 
 Step 1.
 ```
@@ -24,18 +24,7 @@ https://github.com/miclede/Strangeman.Utils.git
 ```
 Step 2.
 ```
-https://github.com/miclede/Strangeman.SceneHelper.git
-```
-
-Option 2: from manifest.json:
-```
-"com.strangemangames.utils": "https://github.com/miclede/Strangeman.Utils.git",
-"com.strangemangames.scenehelper": "https://github.com/miclede/Strangeman.SceneHelper.git"
-```
-
-Option 3: .unitypackage from releases:
-```
-https://github.com/miclede/Strangeman.SceneHelper/releases
+https://github.com/miclede/Strangeman.Scene.git
 ```
 
 <!------>
@@ -46,6 +35,5 @@ https://github.com/miclede/Strangeman.SceneHelper/releases
 [WikiBadge]: https://img.shields.io/badge/Documentation-purple
 [UtilsBadge]: https://img.shields.io/badge/Strangeman.Utils-darkred
 
-[ReleasesLink]: https://github.com/miclede/Strangeman.SceneHelper/releases/latest
 [WikiLink]: https://github.com/miclede/Strangeman.SceneHelper/wiki
 [UtilsLink]: https://github.com/miclede/Strangeman.Utils
